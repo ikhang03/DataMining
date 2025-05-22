@@ -1,0 +1,47 @@
+Model Results - Generated: 2025-05-22 14:54:34
+=====================================================
+Results will be saved to: C:\Users\acer\DataMining\model_results\NaiveBayes_results.txt
+NB params
+
+Results
+======
+
+Correctly Classified Instances         316               79.397  %
+Incorrectly Classified Instances        82               20.603  %
+Kappa statistic                          0.7253
+Mean absolute error                      0.153 
+Root mean squared error                  0.2696
+Relative absolute error                 40.7946 %
+Root relative squared error             62.2593 %
+Total Number of Instances              398     
+
+Confusion Matrix:
+=== Confusion Matrix ===
+
+  a  b  c  d   <-- classified as
+ 92  8  0  0 |  a = 0
+  9 69 21  0 |  b = 1
+  0 19 70 11 |  c = 2
+  0  0 14 85 |  d = 3
+
+Correct % = 79.39698492462311
+Incorrect % = 20.603015075376884
+AUC = 0.9219620958751393
+Kappa = 0.7252769453516953
+MAE = 0.1529802454520509
+RMSE = 0.2695915420728646
+RAE = 40.79461785182912
+RRSE = 62.25926732874765
+Precision = 0.71875
+Recall = 0.696969696969697
+F-Measure = 0.7076923076923077
+Error Rate = 0.20603015075376885
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0,920    0,030    0,911      0,920    0,915      0,887    0,990     0,972     0
+                 0,697    0,090    0,719      0,697    0,708      0,613    0,922     0,706     1
+                 0,700    0,117    0,667      0,700    0,683      0,573    0,901     0,755     2
+                 0,859    0,037    0,885      0,859    0,872      0,830    0,982     0,949     3
+Weighted Avg.    0,794    0,069    0,795      0,794    0,794      0,726    0,949     0,846     
+
