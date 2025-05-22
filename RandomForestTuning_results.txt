@@ -1,0 +1,39 @@
+
+Post-tuning RandomForest
+======
+
+Best Parameters: -I 30 -K 0 -P 100   -num-slots 1   -M 1.0 -V 0.001 -S 1
+
+Correctly Classified Instances       17423               77.2844 %
+Incorrectly Classified Instances      5121               22.7156 %
+Kappa statistic                          0.5605
+Mean absolute error                      0.2975
+Root mean squared error                  0.3861
+Relative absolute error                 58.9329 %
+Root relative squared error             76.2993 %
+Total Number of Instances            22544     
+
+=== Confusion matrix ===
+    a    b   <-- classified as
+ 9303  408 |    a = normal
+ 4713 8120 |    b = anomaly
+
+Correct % = 77.28442157558553
+Incorrect % = 22.715578424414478
+AUC = 0.9137440494404233
+Kappa = 0.5605047147064892
+MAE = 0.29752464494200376
+RMSE = 0.38610883073227087
+RAE = 58.932876474125436
+RRSE = 76.29928531729557
+Precision = 0.9521575984990619
+Recall = 0.6327437076287695
+F-Measure = 0.7602640325827442
+Error Rate = 0.2271557842441448
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0,958    0,367    0,664      0,958    0,784      0,603    0,914     0,850     normal
+                 0,633    0,042    0,952      0,633    0,760      0,603    0,914     0,936     anomaly
+Weighted Avg.    0,773    0,182    0,828      0,773    0,771      0,603    0,914     0,899     
+

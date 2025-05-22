@@ -1,0 +1,40 @@
+NB params
+
+Results
+======
+
+Correctly Classified Instances       17259               76.557  %
+Incorrectly Classified Instances      5285               23.443  %
+Kappa statistic                          0.544 
+Mean absolute error                      0.2349
+Root mean squared error                  0.4827
+Relative absolute error                 46.5337 %
+Root relative squared error             95.381  %
+Total Number of Instances            22544     
+
+Confusion Matrix:
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 8993  718 |    a = normal
+ 4567 8266 |    b = anomaly
+
+Correct % = 76.5569552874379
+Incorrect % = 23.443044712562102
+AUC = 0.9042559896058829
+Kappa = 0.5439583226925557
+MAE = 0.23492679562282934
+RMSE = 0.48267070926346034
+RAE = 46.533663890603385
+RRSE = 95.38095798158639
+Precision = 0.9200801424755121
+Recall = 0.6441206265097795
+F-Measure = 0.7577577118760601
+Error Rate = 0.234430447125621
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0,926    0,356    0,663      0,926    0,773      0,577    0,902     0,885     normal
+                 0,644    0,074    0,920      0,644    0,758      0,577    0,904     0,903     anomaly
+Weighted Avg.    0,766    0,195    0,809      0,766    0,764      0,577    0,903     0,895     
+

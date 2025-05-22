@@ -1,0 +1,42 @@
+Classifier built successfully
+IBk params-K 1 -W 0 -A weka.core.neighboursearch.LinearNNSearch -A "weka.core.EuclideanDistance -R first-last"
+Starting evaluation...
+
+Results
+======
+
+Correctly Classified Instances       17784               78.8857 %
+Incorrectly Classified Instances      4760               21.1143 %
+Kappa statistic                          0.5894
+Mean absolute error                      0.2111
+Root mean squared error                  0.4594
+Relative absolute error                 41.8168 %
+Root relative squared error             90.788  %
+Total Number of Instances            22544     
+
+Confusion Matrix:
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 9268  443 |    a = normal
+ 4317 8516 |    b = anomaly
+
+Correct % = 78.88573456352023
+Incorrect % = 21.114265436479773
+AUC = 0.8177330701583405
+Kappa = 0.5893831460336482
+MAE = 0.21111369714905695
+RMSE = 0.4594280530558359
+RAE = 41.816829790710344
+RRSE = 90.78795746887077
+Precision = 0.9505525170219891
+Recall = 0.6636016519909608
+F-Measure = 0.7815712187958883
+Error Rate = 0.21114265436479773
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0,954    0,336    0,682      0,954    0,796      0,625    0,818     0,687     normal
+                 0,664    0,046    0,951      0,664    0,782      0,625    0,818     0,827     anomaly
+Weighted Avg.    0,789    0,171    0,835      0,789    0,788      0,625    0,818     0,767     
+

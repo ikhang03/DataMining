@@ -1,0 +1,49 @@
+Loading data...
+Converting string attributes to nominal...
+Removing useless attributes...
+Converting nominal attributes to binary...
+Normalizing attributes...
+Original number of attributes: 122
+Applying feature selection with CfsSubsetEval...
+Feature selection failed, continuing with all attributes: A duplicate bin range was detected. Try increasing the bin range precision.
+Class distribution before SMOTE:
+Class 0: 53921 instances
+Class 1: 46857 instances
+Building Logistic Regression classifier...
+LR parameters: -R 0.5 -M 100 -num-decimal-places 4
+Evaluating Logistic Regression classifier...
+
+Results
+======
+
+Correctly Classified Instances       12519               55.5314 %
+Incorrectly Classified Instances     10025               44.4686 %
+Kappa statistic                         -0.0009
+Mean absolute error                      0.4481
+Root mean squared error                  0.6606
+Relative absolute error                 88.7498 %
+Root relative squared error            130.5488 %
+Total Number of Instances            22544     
+
+Confusion Matrix:
+=== Confusion Matrix ===
+
+     a     b   <-- classified as
+   944  8767 |     a = normal
+  1258 11575 |     b = anomaly
+
+Correct % = 55.53140525195174
+Incorrect % = 44.46859474804826
+AUC = 0.6147752089464861
+Kappa = -9.042184110404579E-4
+Precision = 0.5690197620686265
+Recall = 0.9019714797786955
+F-Measure = 0.6978146194423511
+Error Rate = 0.4446859474804826
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0,097    0,098    0,429      0,097    0,158      -0,001   0,624     0,465     normal
+                 0,902    0,903    0,569      0,902    0,698      -0,001   0,615     0,721     anomaly
+Weighted Avg.    0,555    0,556    0,509      0,555    0,465      -0,001   0,619     0,611     
+

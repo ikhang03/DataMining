@@ -1,0 +1,94 @@
+OneR classifier built successfully
+OneR params: -B 6
+OneR model: 
+src_bytes:
+	< 6.5	-> anomaly
+	< 7.5	-> normal
+	< 8.5	-> anomaly
+	< 17.5	-> normal
+	< 18.5	-> anomaly
+	< 19.5	-> normal
+	< 21.0	-> anomaly
+	< 27.5	-> normal
+	< 28.5	-> anomaly
+	< 99.5	-> normal
+	< 100.5	-> anomaly
+	< 125.5	-> normal
+	< 126.5	-> anomaly
+	< 333.5	-> normal
+	< 334.5	-> anomaly
+	< 519.5	-> normal
+	< 520.5	-> anomaly
+	< 831.0	-> normal
+	< 832.5	-> anomaly
+	< 1031.5	-> normal
+	< 1032.5	-> anomaly
+	< 1209.5	-> normal
+	< 1211.5	-> anomaly
+	< 1221.5	-> normal
+	< 1222.5	-> anomaly
+	< 1223.5	-> normal
+	< 1225.5	-> anomaly
+	< 1229.5	-> normal
+	< 1231.5	-> anomaly
+	< 1234.5	-> normal
+	< 1235.5	-> anomaly
+	< 1237.5	-> normal
+	< 1239.5	-> anomaly
+	< 1241.5	-> normal
+	< 1242.5	-> anomaly
+	< 1479.5	-> normal
+	< 1480.5	-> anomaly
+	< 1709.5	-> normal
+	< 1710.5	-> anomaly
+	< 7028.5	-> normal
+	< 7061.0	-> anomaly
+	< 36148.0	-> normal
+	< 39238.0	-> anomaly
+	< 45216.0	-> normal
+	< 54614.5	-> anomaly
+	< 2347339.0	-> normal
+	< 5400163.0	-> anomaly
+	< 1.5782294E7	-> normal
+	>= 1.5782294E7	-> anomaly
+(97151/100778 instances correct)
+
+
+Results
+======
+
+Correctly Classified Instances       18346               81.3786 %
+Incorrectly Classified Instances      4198               18.6214 %
+Kappa statistic                          0.6357
+Mean absolute error                      0.1862
+Root mean squared error                  0.4315
+Relative absolute error                 36.8847 %
+Root relative squared error             85.274  %
+Total Number of Instances            22544     
+
+Confusion Matrix:
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 9297  414 |    a = normal
+ 3784 9049 |    b = anomaly
+
+Correct % = 81.37863733144074
+Incorrect % = 18.62136266855926
+AUC = 0.8312515657941936
+Kappa = 0.6356699400754531
+MAE = 0.18621362668559263
+RMSE = 0.4315247694925433
+RAE = 36.88469122078984
+RRSE = 85.27396653049381
+Precision = 0.9562506604670823
+Recall = 0.7051351983168394
+F-Measure = 0.8117151058485828
+Error Rate = 0.18621362668559263
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0,957    0,295    0,711      0,957    0,816      0,665    0,831     0,699     normal
+                 0,705    0,043    0,956      0,705    0,812      0,665    0,831     0,842     anomaly
+Weighted Avg.    0,814    0,151    0,850      0,814    0,813      0,665    0,831     0,780     
+
