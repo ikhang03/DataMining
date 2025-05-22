@@ -5,38 +5,42 @@ Starting evaluation...
 Results
 ======
 
-Correctly Classified Instances       17784               78.8857 %
-Incorrectly Classified Instances      4760               21.1143 %
-Kappa statistic                          0.5894
-Mean absolute error                      0.2111
-Root mean squared error                  0.4594
-Relative absolute error                 41.8168 %
-Root relative squared error             90.788  %
-Total Number of Instances            22544     
+Correctly Classified Instances         133               33.4171 %
+Incorrectly Classified Instances       265               66.5829 %
+Kappa statistic                          0.1123
+Mean absolute error                      0.3331
+Root mean squared error                  0.576 
+Relative absolute error                 88.8145 %
+Root relative squared error            133.0265 %
+Total Number of Instances              398     
 
 Confusion Matrix:
 === Confusion Matrix ===
 
-    a    b   <-- classified as
- 9268  443 |    a = normal
- 4317 8516 |    b = anomaly
+  a  b  c  d   <-- classified as
+ 42 36 12 10 |  a = 0
+ 29 28 27 15 |  b = 1
+ 14 32 31 23 |  c = 2
+  5 27 35 32 |  d = 3
 
-Correct % = 78.88573456352023
-Incorrect % = 21.114265436479773
-AUC = 0.8177330701583405
-Kappa = 0.5893831460336482
-MAE = 0.21111369714905695
-RMSE = 0.4594280530558359
-RAE = 41.816829790710344
-RRSE = 90.78795746887077
-Precision = 0.9505525170219891
-Recall = 0.6636016519909608
-F-Measure = 0.7815712187958883
-Error Rate = 0.21114265436479773
+Correct % = 33.41708542713568
+Incorrect % = 66.58291457286433
+AUC = 0.48255126515996083
+Kappa = 0.11225769525364668
+MAE = 0.33305532680122896
+RMSE = 0.5760236483784347
+RAE = 88.81450503771593
+RRSE = 133.0264667664558
+Precision = 0.22764227642276422
+Recall = 0.2828282828282828
+F-Measure = 0.2522522522522523
+Error Rate = 0.6658291457286433
 === Detailed Accuracy By Class ===
 
                  TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
-                 0,954    0,336    0,682      0,954    0,796      0,625    0,818     0,687     normal
-                 0,664    0,046    0,951      0,664    0,782      0,625    0,818     0,827     anomaly
-Weighted Avg.    0,789    0,171    0,835      0,789    0,788      0,625    0,818     0,767     
+                 0,420    0,161    0,467      0,420    0,442      0,268    0,629     0,342     0
+                 0,283    0,318    0,228      0,283    0,252      -0,033   0,483     0,243     1
+                 0,310    0,248    0,295      0,310    0,302      0,061    0,531     0,265     2
+                 0,323    0,161    0,400      0,323    0,358      0,175    0,581     0,298     3
+Weighted Avg.    0,334    0,222    0,348      0,334    0,339      0,118    0,556     0,287     
 

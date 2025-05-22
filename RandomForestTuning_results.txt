@@ -4,36 +4,40 @@ Post-tuning RandomForest
 
 Best Parameters: -I 30 -K 0 -P 100   -num-slots 1   -M 1.0 -V 0.001 -S 1
 
-Correctly Classified Instances       17423               77.2844 %
-Incorrectly Classified Instances      5121               22.7156 %
-Kappa statistic                          0.5605
-Mean absolute error                      0.2975
-Root mean squared error                  0.3861
-Relative absolute error                 58.9329 %
-Root relative squared error             76.2993 %
-Total Number of Instances            22544     
+Correctly Classified Instances         343               86.1809 %
+Incorrectly Classified Instances        55               13.8191 %
+Kappa statistic                          0.8157
+Mean absolute error                      0.1719
+Root mean squared error                  0.2517
+Relative absolute error                 45.8402 %
+Root relative squared error             58.1338 %
+Total Number of Instances              398     
 
 === Confusion matrix ===
-    a    b   <-- classified as
- 9303  408 |    a = normal
- 4713 8120 |    b = anomaly
+  a  b  c  d   <-- classified as
+ 96  4  0  0 |  a = 0
+ 10 81  8  0 |  b = 1
+  0 18 75  7 |  c = 2
+  0  0  8 91 |  d = 3
 
-Correct % = 77.28442157558553
-Incorrect % = 22.715578424414478
-AUC = 0.9137440494404233
-Kappa = 0.5605047147064892
-MAE = 0.29752464494200376
-RMSE = 0.38610883073227087
-RAE = 58.932876474125436
-RRSE = 76.29928531729557
-Precision = 0.9521575984990619
-Recall = 0.6327437076287695
-F-Measure = 0.7602640325827442
-Error Rate = 0.2271557842441448
+Correct % = 86.18090452261306
+Incorrect % = 13.819095477386934
+AUC = 0.9577716969021317
+Kappa = 0.8157484954336939
+MAE = 0.17190117252931328
+RMSE = 0.2517276984577864
+RAE = 45.840184272764
+RRSE = 58.13380476193798
+Precision = 0.7864077669902912
+Recall = 0.8181818181818182
+F-Measure = 0.801980198019802
+Error Rate = 0.13819095477386933
 === Detailed Accuracy By Class ===
 
                  TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
-                 0,958    0,367    0,664      0,958    0,784      0,603    0,914     0,850     normal
-                 0,633    0,042    0,952      0,633    0,760      0,603    0,914     0,936     anomaly
-Weighted Avg.    0,773    0,182    0,828      0,773    0,771      0,603    0,914     0,899     
+                 0,960    0,034    0,906      0,960    0,932      0,909    0,996     0,985     0
+                 0,818    0,074    0,786      0,818    0,802      0,735    0,958     0,840     1
+                 0,750    0,054    0,824      0,750    0,785      0,719    0,942     0,855     2
+                 0,919    0,023    0,929      0,919    0,924      0,899    0,991     0,968     3
+Weighted Avg.    0,862    0,046    0,861      0,862    0,861      0,815    0,972     0,912     
 

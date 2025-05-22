@@ -1,94 +1,71 @@
 OneR classifier built successfully
 OneR params: -B 6
 OneR model: 
-src_bytes:
-	< 6.5	-> anomaly
-	< 7.5	-> normal
-	< 8.5	-> anomaly
-	< 17.5	-> normal
-	< 18.5	-> anomaly
-	< 19.5	-> normal
-	< 21.0	-> anomaly
-	< 27.5	-> normal
-	< 28.5	-> anomaly
-	< 99.5	-> normal
-	< 100.5	-> anomaly
-	< 125.5	-> normal
-	< 126.5	-> anomaly
-	< 333.5	-> normal
-	< 334.5	-> anomaly
-	< 519.5	-> normal
-	< 520.5	-> anomaly
-	< 831.0	-> normal
-	< 832.5	-> anomaly
-	< 1031.5	-> normal
-	< 1032.5	-> anomaly
-	< 1209.5	-> normal
-	< 1211.5	-> anomaly
-	< 1221.5	-> normal
-	< 1222.5	-> anomaly
-	< 1223.5	-> normal
-	< 1225.5	-> anomaly
-	< 1229.5	-> normal
-	< 1231.5	-> anomaly
-	< 1234.5	-> normal
-	< 1235.5	-> anomaly
-	< 1237.5	-> normal
-	< 1239.5	-> anomaly
-	< 1241.5	-> normal
-	< 1242.5	-> anomaly
-	< 1479.5	-> normal
-	< 1480.5	-> anomaly
-	< 1709.5	-> normal
-	< 1710.5	-> anomaly
-	< 7028.5	-> normal
-	< 7061.0	-> anomaly
-	< 36148.0	-> normal
-	< 39238.0	-> anomaly
-	< 45216.0	-> normal
-	< 54614.5	-> anomaly
-	< 2347339.0	-> normal
-	< 5400163.0	-> anomaly
-	< 1.5782294E7	-> normal
-	>= 1.5782294E7	-> anomaly
-(97151/100778 instances correct)
+ram:
+	< 0.2195350080171031	-> 0
+	< 0.238107963655799	-> 1
+	< 0.24612506680919288	-> 0
+	< 0.2548102618920363	-> 1
+	< 0.26402993051843926	-> 0
+	< 0.2744521646178514	-> 1
+	< 0.2807322287546766	-> 0
+	< 0.3063869588455371	-> 1
+	< 0.31333511491181176	-> 0
+	< 0.4533671833244254	-> 1
+	< 0.45897915553180113	-> 2
+	< 0.5241849278460715	-> 1
+	< 0.5408872260823089	-> 2
+	< 0.548770710849813	-> 1
+	< 0.5559861036878674	-> 2
+	< 0.5626670229823623	-> 1
+	< 0.7377071084981293	-> 2
+	< 0.75	-> 3
+	< 0.764297167290219	-> 2
+	< 0.8339123463388561	-> 3
+	< 0.8416622127204703	-> 2
+	>= 0.8416622127204703	-> 3
+(939/1192 instances correct)
 
 
 Results
 ======
 
-Correctly Classified Instances       18346               81.3786 %
-Incorrectly Classified Instances      4198               18.6214 %
-Kappa statistic                          0.6357
-Mean absolute error                      0.1862
-Root mean squared error                  0.4315
-Relative absolute error                 36.8847 %
-Root relative squared error             85.274  %
-Total Number of Instances            22544     
+Correctly Classified Instances         289               72.6131 %
+Incorrectly Classified Instances       109               27.3869 %
+Kappa statistic                          0.6349
+Mean absolute error                      0.1369
+Root mean squared error                  0.37  
+Relative absolute error                 36.5158 %
+Root relative squared error             85.4583 %
+Total Number of Instances              398     
 
 Confusion Matrix:
 === Confusion Matrix ===
 
-    a    b   <-- classified as
- 9297  414 |    a = normal
- 3784 9049 |    b = anomaly
+  a  b  c  d   <-- classified as
+ 85 15  0  0 |  a = 0
+ 16 69 14  0 |  b = 1
+  0 29 55 16 |  c = 2
+  0  0 19 80 |  d = 3
 
-Correct % = 81.37863733144074
-Incorrect % = 18.62136266855926
-AUC = 0.8312515657941936
-Kappa = 0.6356699400754531
-MAE = 0.18621362668559263
-RMSE = 0.4315247694925433
-RAE = 36.88469122078984
-RRSE = 85.27396653049381
-Precision = 0.9562506604670823
-Recall = 0.7051351983168394
-F-Measure = 0.8117151058485828
-Error Rate = 0.18621362668559263
+Correct % = 72.61306532663316
+Incorrect % = 27.386934673366834
+AUC = 0.7749062531671227
+Kappa = 0.6348716049590533
+MAE = 0.13693467336683418
+RMSE = 0.3700468529346442
+RAE = 36.515810614357676
+RRSE = 85.45834102908498
+Precision = 0.6106194690265486
+Recall = 0.696969696969697
+F-Measure = 0.6509433962264151
+Error Rate = 0.27386934673366836
 === Detailed Accuracy By Class ===
 
                  TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
-                 0,957    0,295    0,711      0,957    0,816      0,665    0,831     0,699     normal
-                 0,705    0,043    0,956      0,705    0,812      0,665    0,831     0,842     anomaly
-Weighted Avg.    0,814    0,151    0,850      0,814    0,813      0,665    0,831     0,780     
+                 0,850    0,054    0,842      0,850    0,846      0,794    0,898     0,753     0
+                 0,697    0,147    0,611      0,697    0,651      0,527    0,775     0,501     1
+                 0,550    0,111    0,625      0,550    0,585      0,459    0,720     0,457     2
+                 0,808    0,054    0,833      0,808    0,821      0,762    0,877     0,721     3
+Weighted Avg.    0,726    0,091    0,728      0,726    0,726      0,636    0,817     0,608     
 

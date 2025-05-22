@@ -9,9 +9,9 @@ public class dataImporter {
 
     static {
         try {
-            trainSource = new DataSource("data/KDDTrain.arff");
-            testSource = new DataSource("data/KDDTest+.arff");
-            validSource = new DataSource("data/KDDValid.arff");
+            trainSource = new DataSource("data/train_clean.arff");
+            testSource = new DataSource("data/test_clean.arff");
+            validSource = new DataSource("data/valid_clean.arff");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

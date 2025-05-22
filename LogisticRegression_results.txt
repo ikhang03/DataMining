@@ -3,12 +3,15 @@ Converting string attributes to nominal...
 Removing useless attributes...
 Converting nominal attributes to binary...
 Normalizing attributes...
-Original number of attributes: 122
+Original number of attributes: 21
 Applying feature selection with CfsSubsetEval...
-Feature selection failed, continuing with all attributes: A duplicate bin range was detected. Try increasing the bin range precision.
+Reduced to 4 attributes
 Class distribution before SMOTE:
-Class 0: 53921 instances
-Class 1: 46857 instances
+Class 0: 297 instances
+Class 1: 298 instances
+Class 2: 298 instances
+Class 3: 299 instances
+Skipping SMOTE as this is not a binary classification problem
 Building Logistic Regression classifier...
 LR parameters: -R 0.5 -M 100 -num-decimal-places 4
 Evaluating Logistic Regression classifier...
@@ -16,34 +19,38 @@ Evaluating Logistic Regression classifier...
 Results
 ======
 
-Correctly Classified Instances       12519               55.5314 %
-Incorrectly Classified Instances     10025               44.4686 %
-Kappa statistic                         -0.0009
-Mean absolute error                      0.4481
-Root mean squared error                  0.6606
-Relative absolute error                 88.7498 %
-Root relative squared error            130.5488 %
-Total Number of Instances            22544     
+Correctly Classified Instances         357               89.6985 %
+Incorrectly Classified Instances        41               10.3015 %
+Kappa statistic                          0.8626
+Mean absolute error                      0.1388
+Root mean squared error                  0.2242
+Relative absolute error                 37.0195 %
+Root relative squared error             51.7727 %
+Total Number of Instances              398     
 
 Confusion Matrix:
 === Confusion Matrix ===
 
-     a     b   <-- classified as
-   944  8767 |     a = normal
-  1258 11575 |     b = anomaly
+  a  b  c  d   <-- classified as
+ 93  7  0  0 |  a = 0
+  5 82 12  0 |  b = 1
+  0  6 89  5 |  c = 2
+  0  0  6 93 |  d = 3
 
-Correct % = 55.53140525195174
-Incorrect % = 44.46859474804826
-AUC = 0.6147752089464861
-Kappa = -9.042184110404579E-4
-Precision = 0.5690197620686265
-Recall = 0.9019714797786955
-F-Measure = 0.6978146194423511
-Error Rate = 0.4446859474804826
+Correct % = 89.69849246231156
+Incorrect % = 10.301507537688442
+AUC = 0.9814871119218945
+Kappa = 0.862639628946859
+Precision = 0.8631578947368421
+Recall = 0.8282828282828283
+F-Measure = 0.8453608247422681
+Error Rate = 0.10301507537688442
 === Detailed Accuracy By Class ===
 
                  TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
-                 0,097    0,098    0,429      0,097    0,158      -0,001   0,624     0,465     normal
-                 0,902    0,903    0,569      0,902    0,698      -0,001   0,615     0,721     anomaly
-Weighted Avg.    0,555    0,556    0,509      0,555    0,465      -0,001   0,619     0,611     
+                 0,930    0,017    0,949      0,930    0,939      0,919    0,997     0,991     0
+                 0,828    0,043    0,863      0,828    0,845      0,796    0,981     0,943     1
+                 0,890    0,060    0,832      0,890    0,860      0,812    0,979     0,943     2
+                 0,939    0,017    0,949      0,939    0,944      0,926    0,995     0,986     3
+Weighted Avg.    0,897    0,034    0,898      0,897    0,897      0,863    0,988     0,966     
 

@@ -5,34 +5,38 @@ Evaluating SVM classifier...
 Results
 ======
 
-Correctly Classified Instances       18092               80.252  %
-Incorrectly Classified Instances      4452               19.748  %
-Kappa statistic                          0.6032
-Mean absolute error                      0.2543
-Root mean squared error                  0.3948
-Relative absolute error                 50.3617 %
-Root relative squared error             78.0124 %
-Total Number of Instances            22544     
+Correctly Classified Instances         368               92.4623 %
+Incorrectly Classified Instances        30                7.5377 %
+Kappa statistic                          0.8995
+Mean absolute error                      0.0497
+Root mean squared error                  0.1578
+Relative absolute error                 13.2624 %
+Root relative squared error             36.4468 %
+Total Number of Instances              398     
 
 Confusion Matrix:
 === Confusion Matrix ===
 
-     a     b   <-- classified as
-  8079  1632 |     a = normal
-  2820 10013 |     b = anomaly
+  a  b  c  d   <-- classified as
+ 94  6  0  0 |  a = 0
+  2 90  7  0 |  b = 1
+  0  5 92  3 |  c = 2
+  0  0  7 92 |  d = 3
 
-Correct % = 80.25195173882186
-Incorrect % = 19.74804826117814
-AUC = 0.8558413021379827
-Kappa = 0.6032207633573591
-Precision = 0.8598540145985402
-Recall = 0.7802540325722747
-F-Measure = 0.8181223956205572
-Error Rate = 0.19748048261178142
+Correct % = 92.46231155778895
+Incorrect % = 7.5376884422110555
+AUC = 0.9924664707273403
+Kappa = 0.8994949494949495
+Precision = 0.8910891089108911
+Recall = 0.9090909090909091
+F-Measure = 0.9
+Error Rate = 0.07537688442211055
 === Detailed Accuracy By Class ===
 
                  TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
-                 0,832    0,220    0,741      0,832    0,784      0,607    0,856     0,695     normal
-                 0,780    0,168    0,860      0,780    0,818      0,607    0,856     0,910     anomaly
-Weighted Avg.    0,803    0,190    0,809      0,803    0,803      0,607    0,856     0,818     
+                 0,940    0,007    0,979      0,940    0,959      0,946    0,999     0,997     0
+                 0,909    0,037    0,891      0,909    0,900      0,867    0,992     0,979     1
+                 0,920    0,047    0,868      0,920    0,893      0,857    0,990     0,973     2
+                 0,929    0,010    0,968      0,929    0,948      0,932    0,997     0,992     3
+Weighted Avg.    0,925    0,025    0,927      0,925    0,925      0,900    0,995     0,985     
 
