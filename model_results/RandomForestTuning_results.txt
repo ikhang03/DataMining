@@ -1,4 +1,4 @@
-Model Results - Generated: 2025-05-22 14:54:33
+Model Results - Generated: 2025-05-22 18:29:00
 =====================================================
 Results will be saved to: C:\Users\acer\DataMining\model_results\RandomForestTuning_results.txt
 
@@ -44,3 +44,9 @@ Error Rate = 0.13819095477386933
                  0,919    0,023    0,929      0,919    0,924      0,899    0,991     0,968     3
 Weighted Avg.    0,862    0,046    0,861      0,862    0,861      0,815    0,972     0,912     
 
+
+=== Runtime Information ===
+Parameter Tuning Time: 561 ms
+Training Time: 358 ms
+Testing Time: 6 ms
+Total Execution Time: 951 ms

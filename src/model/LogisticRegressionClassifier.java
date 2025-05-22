@@ -9,11 +9,6 @@ import weka.filters.Filter;
 import weka.filters.supervised.instance.SMOTE;
 import weka.filters.unsupervised.attribute.Normalize;
 import weka.filters.unsupervised.attribute.StringToNominal;
-import weka.filters.unsupervised.attribute.NominalToBinary;
-import weka.filters.unsupervised.attribute.RemoveUseless;
-import weka.attributeSelection.AttributeSelection;
-import weka.attributeSelection.CfsSubsetEval;  // Changed to CfsSubsetEval
-import weka.attributeSelection.GreedyStepwise; // Changed to GreedyStepwise search
 
 public class LogisticRegressionClassifier implements Command {
     public static void main(String[] args) {
@@ -23,8 +18,14 @@ public class LogisticRegressionClassifier implements Command {
 
     @Override
     public void exec(DataSource trainSource, DataSource testSource) {
+        // Start timing the overall execution
+        long startTimeTotal = System.currentTimeMillis();
+
         try {
-            System.out.println("Loading data...");
+            // Start timing the data preprocessing phase
+            long startTimePreprocessing = System.currentTimeMillis();
+
+            System.out.println("Loading datasets...");
             Instances trainDataset = trainSource.getDataSet();
             Instances testDataset = testSource.getDataSet();
 
@@ -37,89 +38,35 @@ public class LogisticRegressionClassifier implements Command {
             }
 
             System.out.println("Converting string attributes to nominal...");
-            // Convert string attributes to nominal if needed
             StringToNominal stringToNominal = new StringToNominal();
-            stringToNominal.setAttributeRange("first-last"); // Convert all string attributes to nominal
             stringToNominal.setInputFormat(trainDataset);
+            stringToNominal.setOptions(new String[]{"-R", "first-last"});
             trainDataset = Filter.useFilter(trainDataset, stringToNominal);
             testDataset = Filter.useFilter(testDataset, stringToNominal);
 
-            System.out.println("Removing useless attributes...");
-            // Remove attributes with zero variance (useless for classification)
-            RemoveUseless removeUseless = new RemoveUseless();
-            removeUseless.setInputFormat(trainDataset);
-            trainDataset = Filter.useFilter(trainDataset, removeUseless);
-            testDataset = Filter.useFilter(testDataset, removeUseless);
-
-            System.out.println("Converting nominal attributes to binary...");
-            // Convert nominal attributes to binary for Logistic Regression
-            NominalToBinary nominalToBinary = new NominalToBinary();
-            nominalToBinary.setInputFormat(trainDataset);
-            trainDataset = Filter.useFilter(trainDataset, nominalToBinary);
-            testDataset = Filter.useFilter(testDataset, nominalToBinary);
-
-            System.out.println("Normalizing attributes...");
-            // Normalize numerical attributes
+            System.out.println("Normalizing numeric attributes...");
             Normalize normalize = new Normalize();
             normalize.setInputFormat(trainDataset);
             trainDataset = Filter.useFilter(trainDataset, normalize);
             testDataset = Filter.useFilter(testDataset, normalize);
 
-            System.out.println("Original number of attributes: " + trainDataset.numAttributes());
-
-            // Feature selection using CfsSubsetEval to avoid discretization issues
-            System.out.println("Applying feature selection with CfsSubsetEval...");
-            AttributeSelection attSelect = new AttributeSelection();
-            CfsSubsetEval eval = new CfsSubsetEval();
-            GreedyStepwise search = new GreedyStepwise();
-            search.setSearchBackwards(true);
-            attSelect.setEvaluator(eval);
-            attSelect.setSearch(search);
-
-            try {
-                attSelect.SelectAttributes(trainDataset);
-                // Apply selected attributes
-                trainDataset = attSelect.reduceDimensionality(trainDataset);
-                testDataset = attSelect.reduceDimensionality(testDataset);
-                System.out.println("Reduced to " + trainDataset.numAttributes() + " attributes");
-            } catch (Exception e) {
-                System.out.println("Feature selection failed, continuing with all attributes: " + e.getMessage());
-                // Continue without feature selection if it fails
-            }
-
-            // Check for class imbalance and apply SMOTE if necessary
-            int[] classCounts = new int[trainDataset.numClasses()];
-            for (int i = 0; i < trainDataset.numInstances(); i++) {
-                classCounts[(int) trainDataset.instance(i).classValue()]++;
-            }
-
-            System.out.println("Class distribution before SMOTE:");
-            for (int i = 0; i < classCounts.length; i++) {
-                System.out.println("Class " + i + ": " + classCounts[i] + " instances");
-            }
-
-            // Only apply SMOTE if we have binary classification and imbalance
+            // Check if this is a binary classification problem and apply SMOTE if needed
             if (trainDataset.numClasses() == 2) {
-                double minorityRatio = Math.min(classCounts[0], classCounts[1]) /
-                        (double) Math.max(classCounts[0], classCounts[1]);
+                int[] classCounts = new int[trainDataset.numClasses()];
+                for (int i = 0; i < trainDataset.numInstances(); i++) {
+                    classCounts[(int) trainDataset.instance(i).classValue()]++;
+                }
 
-                // Apply SMOTE if significant imbalance exists
-                if (minorityRatio < 0.5) {
+                double ratio = Math.min(classCounts[0], classCounts[1]) / (double) Math.max(classCounts[0], classCounts[1]);
+
+                // Apply SMOTE if class imbalance is detected
+                if (ratio < 0.8) {
                     try {
-                        System.out.println("Applying SMOTE for class imbalance (minority ratio: " + minorityRatio + ")...");
+                        System.out.println("Class imbalance detected. Applying SMOTE...");
                         SMOTE smote = new SMOTE();
                         smote.setInputFormat(trainDataset);
                         trainDataset = Filter.useFilter(trainDataset, smote);
-
-                        // Report new class distribution
-                        classCounts = new int[trainDataset.numClasses()];
-                        for (int i = 0; i < trainDataset.numInstances(); i++) {
-                            classCounts[(int) trainDataset.instance(i).classValue()]++;
-                        }
-                        System.out.println("Class distribution after SMOTE:");
-                        for (int i = 0; i < classCounts.length; i++) {
-                            System.out.println("Class " + i + ": " + classCounts[i] + " instances");
-                        }
+                        System.out.println("SMOTE applied successfully");
                     } catch (Exception e) {
                         System.out.println("SMOTE failed, continuing without balancing: " + e.getMessage());
                     }
@@ -127,6 +74,9 @@ public class LogisticRegressionClassifier implements Command {
             } else {
                 System.out.println("Skipping SMOTE as this is not a binary classification problem");
             }
+
+            long endTimePreprocessing = System.currentTimeMillis();
+            long preprocessingTime = endTimePreprocessing - startTimePreprocessing;
 
             // Create and configure Logistic Regression classifier
             Logistic lr = new Logistic();
@@ -136,29 +86,57 @@ public class LogisticRegressionClassifier implements Command {
 
             // Build classifier
             System.out.println("Building Logistic Regression classifier...");
+
+            // Start timing the training phase
+            long startTimeTraining = System.currentTimeMillis();
             lr.buildClassifier(trainDataset);
+            long endTimeTraining = System.currentTimeMillis();
+            long trainingTime = endTimeTraining - startTimeTraining;
+
             System.out.println("LR parameters: " + String.join(" ", lr.getOptions()));
 
             // Evaluate model
             System.out.println("Evaluating Logistic Regression classifier...");
             Evaluation evaluation = new Evaluation(trainDataset);
+
+            // Start timing the testing phase
+            long startTimeTesting = System.currentTimeMillis();
             evaluation.evaluateModel(lr, testDataset);
+            long endTimeTesting = System.currentTimeMillis();
+            long testingTime = endTimeTesting - startTimeTesting;
 
             // Output evaluation results
             System.out.println(evaluation.toSummaryString("\nResults\n======\n", false));
+
+            // Print confusion matrix and other metrics
             System.out.println("Confusion Matrix:\n" + evaluation.toMatrixString());
             System.out.println("Correct % = " + evaluation.pctCorrect());
             System.out.println("Incorrect % = " + evaluation.pctIncorrect());
             System.out.println("AUC = " + evaluation.areaUnderROC(1));
             System.out.println("Kappa = " + evaluation.kappa());
+            System.out.println("MAE = " + evaluation.meanAbsoluteError());
+            System.out.println("RMSE = " + evaluation.rootMeanSquaredError());
+            System.out.println("RAE = " + evaluation.relativeAbsoluteError());
+            System.out.println("RRSE = " + evaluation.rootRelativeSquaredError());
             System.out.println("Precision = " + evaluation.precision(1));
             System.out.println("Recall = " + evaluation.recall(1));
             System.out.println("F-Measure = " + evaluation.fMeasure(1));
             System.out.println("Error Rate = " + evaluation.errorRate());
             System.out.println(evaluation.toClassDetailsString());
 
+            // Calculate total execution time
+            long endTimeTotal = System.currentTimeMillis();
+            long totalTime = endTimeTotal - startTimeTotal;
+
+            // Print timing information
+            System.out.println("\n=== Runtime Information ===");
+            System.out.println("Preprocessing Time: " + preprocessingTime + " ms");
+            System.out.println("Training Time: " + trainingTime + " ms");
+            System.out.println("Testing Time: " + testingTime + " ms");
+            System.out.println("Total Execution Time: " + totalTime + " ms");
+
         } catch (Exception e) {
-            System.out.println("Error in Logistic Regression classification: " + e.getMessage());
+            System.err.println("Error in Logistic Regression classification:");
             e.printStackTrace();
         }
     }

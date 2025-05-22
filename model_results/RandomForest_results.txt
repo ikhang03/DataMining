@@ -1,4 +1,4 @@
-Model Results - Generated: 2025-05-22 14:54:32
+Model Results - Generated: 2025-05-22 18:28:59
 =====================================================
 Results will be saved to: C:\Users\acer\DataMining\model_results\RandomForest_results.txt
 RandomForest parameters: -P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1
@@ -43,3 +43,8 @@ Error Rate = 0.13316582914572864
                  0,919    0,023    0,929      0,919    0,924      0,899    0,994     0,983     3
 Weighted Avg.    0,867    0,044    0,867      0,867    0,866      0,822    0,979     0,938     
 
+
+=== Runtime Information ===
+Training Time: 600 ms
+Testing Time: 36 ms
+Total Execution Time: 749 ms

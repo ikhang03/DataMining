@@ -1,4 +1,4 @@
-Model Results - Generated: 2025-05-22 14:54:34
+Model Results - Generated: 2025-05-22 18:29:01
 =====================================================
 Results will be saved to: C:\Users\acer\DataMining\model_results\IBk_results.txt
 Classifier built successfully
@@ -47,3 +47,8 @@ Error Rate = 0.6658291457286433
                  0,323    0,161    0,400      0,323    0,358      0,175    0,581     0,298     3
 Weighted Avg.    0,334    0,222    0,348      0,334    0,339      0,118    0,556     0,287     
 
+
+=== Runtime Information ===
+Training Time: 3 ms
+Testing Time: 101 ms
+Total Execution Time: 133 ms

@@ -24,11 +24,12 @@ public class RandomForestTuning implements Command {
 
     @Override
     public void exec(DataSource trainSource, DataSource testSource) {
+        // Start timing the overall execution
+        long startTimeTotal = System.currentTimeMillis();
+
         try {
             Instances trainingDataSet = trainSource.getDataSet();
-
             Instances testingDataSet = testSource.getDataSet();
-
             Instances validDataset = validSource.getDataSet();
 
             setClassIndex(trainingDataSet);
@@ -40,6 +41,9 @@ public class RandomForestTuning implements Command {
 
             RandomForest forest = new RandomForest();
 
+            // Start timing the parameter tuning phase
+            long startTimeTuning = System.currentTimeMillis();
+
             CVParameterSelection ps = new CVParameterSelection();
             ps.setClassifier(forest);
             ps.setNumFolds(10);
@@ -47,6 +51,12 @@ public class RandomForestTuning implements Command {
             ps.addCVParameter("K 0 5 1");
 
             ps.buildClassifier(validDataset);
+
+            long endTimeTuning = System.currentTimeMillis();
+            long tuningTime = endTimeTuning - startTimeTuning;
+
+            // Start timing the model building with best parameters
+            long startTimeTraining = System.currentTimeMillis();
 
             RandomForest tempRf = new RandomForest();
             tempRf.setOptions(ps.getBestClassifierOptions());
@@ -68,8 +78,17 @@ public class RandomForestTuning implements Command {
             finalRf.setOptions(bestOptions);
             finalRf.buildClassifier(trainingDataSet);
 
+            long endTimeTraining = System.currentTimeMillis();
+            long trainingTime = endTimeTraining - startTimeTraining;
+
+            // Start timing the testing phase
+            long startTimeTesting = System.currentTimeMillis();
+
             Evaluation testEval = new Evaluation(trainingDataSet);
             testEval.evaluateModel(finalRf, testingDataSet);
+
+            long endTimeTesting = System.currentTimeMillis();
+            long testingTime = endTimeTesting - startTimeTesting;
 
             System.out.println(testEval.toSummaryString());
 
@@ -88,6 +107,18 @@ public class RandomForestTuning implements Command {
             System.out.println("F-Measure = " + testEval.fMeasure(1));
             System.out.println("Error Rate = " + testEval.errorRate());
             System.out.println(testEval.toClassDetailsString());
+
+            // Calculate total execution time
+            long endTimeTotal = System.currentTimeMillis();
+            long totalTime = endTimeTotal - startTimeTotal;
+
+            // Print timing information
+            System.out.println("\n=== Runtime Information ===");
+            System.out.println("Parameter Tuning Time: " + tuningTime + " ms");
+            System.out.println("Training Time: " + trainingTime + " ms");
+            System.out.println("Testing Time: " + testingTime + " ms");
+            System.out.println("Total Execution Time: " + totalTime + " ms");
+
         } catch (Exception e) {
             e.printStackTrace();
         }

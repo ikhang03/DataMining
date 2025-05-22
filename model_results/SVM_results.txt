@@ -1,4 +1,4 @@
-Model Results - Generated: 2025-05-22 14:54:34
+Model Results - Generated: 2025-05-22 18:29:02
 =====================================================
 Results will be saved to: C:\Users\acer\DataMining\model_results\SVM_results.txt
 Building SVM classifier...
@@ -43,3 +43,9 @@ Error Rate = 0.07537688442211055
                  0,929    0,010    0,968      0,929    0,948      0,932    0,997     0,992     3
 Weighted Avg.    0,925    0,025    0,927      0,925    0,925      0,900    0,995     0,985     
 
+
+=== Runtime Information ===
+Preprocessing Time: 20 ms
+Training Time: 229 ms
+Testing Time: 28 ms
+Total Execution Time: 296 ms

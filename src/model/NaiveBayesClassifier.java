@@ -8,7 +8,6 @@ import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 
 public class NaiveBayesClassifier implements Command {
-
     public static void main(String[] args) {
         Command cmd = new NaiveBayesClassifier();
         cmd.exec(dataImporter.trainSource, dataImporter.testSource);
@@ -16,9 +15,11 @@ public class NaiveBayesClassifier implements Command {
 
     @Override
     public void exec(DataSource trainSource, DataSource testSource) {
+        // Start timing the overall execution
+        long startTimeTotal = System.currentTimeMillis();
+
         try {
             Instances trainDataset = trainSource.getDataSet();
-
             Instances testDataset = testSource.getDataSet();
 
             if (trainDataset.classIndex() == -1) {
@@ -29,19 +30,25 @@ public class NaiveBayesClassifier implements Command {
                 testDataset.setClassIndex(testDataset.numAttributes() - 1);
             }
 
-
             NaiveBayes nb = new NaiveBayes();
+
+            // Start timing the training phase
+            long startTimeTraining = System.currentTimeMillis();
             nb.buildClassifier(trainDataset);
+            long endTimeTraining = System.currentTimeMillis();
+            long trainingTime = endTimeTraining - startTimeTraining;
 
-            System.out.println("NB params" + String.join(" ", nb.getOptions()));
-
+            System.out.println("Classifier built successfully");
             Evaluation eval = new Evaluation(trainDataset);
+
+            // Start timing the testing phase
+            long startTimeTesting = System.currentTimeMillis();
             eval.evaluateModel(nb, testDataset);
+            long endTimeTesting = System.currentTimeMillis();
+            long testingTime = endTimeTesting - startTimeTesting;
 
             System.out.println(eval.toSummaryString("\nResults\n======\n", false));
-
             System.out.println("Confusion Matrix:\n" + eval.toMatrixString());
-
             System.out.println("Correct % = " + eval.pctCorrect());
             System.out.println("Incorrect % = " + eval.pctIncorrect());
             System.out.println("AUC = " + eval.areaUnderROC(1));
@@ -55,6 +62,16 @@ public class NaiveBayesClassifier implements Command {
             System.out.println("F-Measure = " + eval.fMeasure(1));
             System.out.println("Error Rate = " + eval.errorRate());
             System.out.println(eval.toClassDetailsString());
+
+            // Calculate total execution time
+            long endTimeTotal = System.currentTimeMillis();
+            long totalTime = endTimeTotal - startTimeTotal;
+
+            // Print timing information
+            System.out.println("\n=== Runtime Information ===");
+            System.out.println("Training Time: " + trainingTime + " ms");
+            System.out.println("Testing Time: " + testingTime + " ms");
+            System.out.println("Total Execution Time: " + totalTime + " ms");
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -22,19 +22,31 @@ public class RandomForestClassifier implements Command {
 
     @Override
     public void exec(DataSource trainSource, DataSource testSource) {
+        // Start timing the overall execution
+        long startTimeTotal = System.currentTimeMillis();
+
         try {
             Instances trainingDataSet = trainSource.getDataSet();
-
             Instances testingDataSet = testSource.getDataSet();
 
             setClassIndex(trainingDataSet);
             setClassIndex(testingDataSet);
 
             RandomForest forest = new RandomForest();
+
+            // Start timing the training phase
+            long startTimeTraining = System.currentTimeMillis();
             forest.buildClassifier(trainingDataSet);
+            long endTimeTraining = System.currentTimeMillis();
+            long trainingTime = endTimeTraining - startTimeTraining;
 
             Evaluation eval = new Evaluation(trainingDataSet);
+
+            // Start timing the testing phase
+            long startTimeTesting = System.currentTimeMillis();
             eval.evaluateModel(forest, testingDataSet);
+            long endTimeTesting = System.currentTimeMillis();
+            long testingTime = endTimeTesting - startTimeTesting;
 
             System.out.println("RandomForest parameters: " + String.join(" ", forest.getOptions()));
 
@@ -55,6 +67,16 @@ public class RandomForestClassifier implements Command {
             System.out.println("F-Measure = " + eval.fMeasure(1));
             System.out.println("Error Rate = " + eval.errorRate());
             System.out.println(eval.toClassDetailsString());
+
+            // Calculate total execution time
+            long endTimeTotal = System.currentTimeMillis();
+            long totalTime = endTimeTotal - startTimeTotal;
+
+            // Print timing information
+            System.out.println("\n=== Runtime Information ===");
+            System.out.println("Training Time: " + trainingTime + " ms");
+            System.out.println("Testing Time: " + testingTime + " ms");
+            System.out.println("Total Execution Time: " + totalTime + " ms");
 
         } catch (Exception e) {
             e.printStackTrace();
