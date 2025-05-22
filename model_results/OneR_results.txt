@@ -1,3 +1,6 @@
+Model Results - Generated: 2025-05-22 14:54:34
+=====================================================
+Results will be saved to: C:\Users\acer\DataMining\model_results\OneR_results.txt
 OneR classifier built successfully
 OneR params: -B 6
 OneR model: 

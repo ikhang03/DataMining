@@ -1,3 +1,6 @@
+Model Results - Generated: 2025-05-22 14:54:34
+=====================================================
+Results will be saved to: C:\Users\acer\DataMining\model_results\IBk_results.txt
 Classifier built successfully
 IBk params-K 1 -W 0 -A weka.core.neighboursearch.LinearNNSearch -A "weka.core.EuclideanDistance -R first-last"
 Starting evaluation...

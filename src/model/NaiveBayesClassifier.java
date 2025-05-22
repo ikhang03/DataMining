@@ -17,13 +17,10 @@ public class NaiveBayesClassifier implements Command {
     @Override
     public void exec(DataSource trainSource, DataSource testSource) {
         try {
-            // Load dataset
             Instances trainDataset = trainSource.getDataSet();
 
-            // Load testing dataset
             Instances testDataset = testSource.getDataSet();
 
-            // Set class index to the last attribute (assuming the last attribute is the class label)
             if (trainDataset.classIndex() == -1) {
                 trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
             }
@@ -33,7 +30,6 @@ public class NaiveBayesClassifier implements Command {
             }
 
 
-            // Create and train the NaiveBayes classifier
             NaiveBayes nb = new NaiveBayes();
             nb.buildClassifier(trainDataset);
 
@@ -42,13 +38,10 @@ public class NaiveBayesClassifier implements Command {
             Evaluation eval = new Evaluation(trainDataset);
             eval.evaluateModel(nb, testDataset);
 
-            // Output the evaluation results
             System.out.println(eval.toSummaryString("\nResults\n======\n", false));
 
-            // Print the confusion matrix
             System.out.println("Confusion Matrix:\n" + eval.toMatrixString());
 
-            // Print additional evaluation metrics
             System.out.println("Correct % = " + eval.pctCorrect());
             System.out.println("Incorrect % = " + eval.pctIncorrect());
             System.out.println("AUC = " + eval.areaUnderROC(1));

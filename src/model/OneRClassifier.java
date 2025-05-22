@@ -18,13 +18,10 @@ public class OneRClassifier implements Command {
     @Override
     public void exec(DataSource trainSource, DataSource testSource) {
         try {
-            // Load dataset
             Instances trainDataset = trainSource.getDataSet();
 
-            // Load testing dataset
             Instances testDataset = testSource.getDataSet();
 
-            // Set class index to the last attribute (assuming the last attribute is the class label)
             if (trainDataset.classIndex() == -1) {
                 trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
             }
@@ -33,16 +30,13 @@ public class OneRClassifier implements Command {
                 testDataset.setClassIndex(testDataset.numAttributes() - 1);
             }
 
-            // Convert any string attributes to nominal if needed (OneR requires nominal attributes)
             StringToNominal stringToNominal = new StringToNominal();
             stringToNominal.setAttributeRange("first-last"); // Convert all attributes
             stringToNominal.setInputFormat(trainDataset);
             trainDataset = Filter.useFilter(trainDataset, stringToNominal);
             testDataset = Filter.useFilter(testDataset, stringToNominal);
 
-            // Create and train the OneR classifier
             OneR oner = new OneR();
-            // You can set the minimum bucket size (default is 6)
             oner.setMinBucketSize(6);
             oner.buildClassifier(trainDataset);
 
@@ -53,13 +47,10 @@ public class OneRClassifier implements Command {
             Evaluation eval = new Evaluation(trainDataset);
             eval.evaluateModel(oner, testDataset);
 
-            // Output the evaluation results
             System.out.println(eval.toSummaryString("\nResults\n======\n", false));
 
-            // Print the confusion matrix
             System.out.println("Confusion Matrix:\n" + eval.toMatrixString());
 
-            // Print additional evaluation metrics
             System.out.println("Correct % = " + eval.pctCorrect());
             System.out.println("Incorrect % = " + eval.pctIncorrect());
             System.out.println("AUC = " + eval.areaUnderROC(1));

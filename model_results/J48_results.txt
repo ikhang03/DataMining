@@ -1,3 +1,6 @@
+Model Results - Generated: 2025-05-22 14:54:34
+=====================================================
+Results will be saved to: C:\Users\acer\DataMining\model_results\J48_results.txt
 J48 params-C 0.25 -M 2
 
 Results

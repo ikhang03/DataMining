@@ -16,13 +16,10 @@ public class IBkClassifier implements Command {
     @Override
     public void exec(DataSource trainSource, DataSource testSource) {
         try {
-            // Load dataset
             Instances trainDataset = trainSource.getDataSet();
 
-            // Load testing dataset
             Instances testDataset = testSource.getDataSet();
 
-            // Set class index to the last attribute (assuming the last attribute is the class label)
             if (trainDataset.classIndex() == -1) {
                 trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
             }
@@ -32,7 +29,6 @@ public class IBkClassifier implements Command {
             }
 
 
-            // Create and train the NaiveBayes classifier
             IBk ibk = new IBk();
             ibk.buildClassifier(trainDataset);
             System.out.println("Classifier built successfully");
@@ -41,13 +37,10 @@ public class IBkClassifier implements Command {
             Evaluation eval = new Evaluation(trainDataset);
             eval.evaluateModel(ibk, testDataset);
 
-            // Output the evaluation results
             System.out.println(eval.toSummaryString("\nResults\n======\n", false));
 
-            // Print the confusion matrix
             System.out.println("Confusion Matrix:\n" + eval.toMatrixString());
 
-            // Print additional evaluation metrics
             System.out.println("Correct % = " + eval.pctCorrect());
             System.out.println("Incorrect % = " + eval.pctIncorrect());
             System.out.println("AUC = " + eval.areaUnderROC(1));
