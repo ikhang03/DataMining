@@ -16,13 +16,10 @@ public class J48Classifier implements Command {
     @Override
     public void exec(DataSource trainSource, DataSource testSource) {
         try {
-            // Load dataset
             Instances trainDataset = trainSource.getDataSet();
 
-            // Load testing dataset
             Instances testDataset = testSource.getDataSet();
 
-            // Set class index to the last attribute (assuming the last attribute is the class label)
             if (trainDataset.classIndex() == -1) {
                 trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
             }

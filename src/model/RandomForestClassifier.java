@@ -23,13 +23,10 @@ public class RandomForestClassifier implements Command {
     @Override
     public void exec(DataSource trainSource, DataSource testSource) {
         try {
-            // Load datasets
             Instances trainingDataSet = trainSource.getDataSet();
 
-            // Load testing dataset
             Instances testingDataSet = testSource.getDataSet();
 
-            // Set class index to the last attribute
             setClassIndex(trainingDataSet);
             setClassIndex(testingDataSet);
 
@@ -39,16 +36,12 @@ public class RandomForestClassifier implements Command {
             Evaluation eval = new Evaluation(trainingDataSet);
             eval.evaluateModel(forest, testingDataSet);
 
-            // Print the parameters of the RandomForest model
             System.out.println("RandomForest parameters: " + String.join(" ", forest.getOptions()));
 
-            // Output the evaluation results
             System.out.println(eval.toSummaryString("\nPre-tuning RandomForest\n======\n", false));
 
-            // Print the confusion matrix
             System.out.println(eval.toMatrixString("=== Confusion matrix ==="));
 
-            // Print additional evaluation metrics
             System.out.println("Correct % = " + eval.pctCorrect());
             System.out.println("Incorrect % = " + eval.pctIncorrect());
             System.out.println("AUC = " + eval.areaUnderROC(1));

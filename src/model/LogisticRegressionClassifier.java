@@ -25,11 +25,9 @@ public class LogisticRegressionClassifier implements Command {
     public void exec(DataSource trainSource, DataSource testSource) {
         try {
             System.out.println("Loading data...");
-            // Load dataset
             Instances trainDataset = trainSource.getDataSet();
             Instances testDataset = testSource.getDataSet();
 
-            // Set class index to the last attribute
             if (trainDataset.classIndex() == -1) {
                 trainDataset.setClassIndex(trainDataset.numAttributes() - 1);
             }
